@@ -4,11 +4,13 @@ pragma solidity >=0.6.12 <0.9.0;
 contract Election {
 
     struct person {
+        uint256 RG;
         uint256 CPF;
         uint256 age;
         bool voted;
     }
 
+    address[] addresses;
     mapping(address => person) public people;
     mapping(string => uint256) public parties;
     enum parties_enum { PRONA, PL, UNIAO, PT, PP }
@@ -45,17 +47,25 @@ contract Election {
         return string(buffer);
     }
 
-    function create_person(uint256 cpf, uint256 age) public returns (address) {
+    function create_person(uint256 rg, uint256 cpf, uint256 age) public returns (address) {
 
         string memory numberString = uint256ToString(cpf);
-        uint256 length = bytes(numberString).length;
+        uint256 cpf_length = bytes(numberString).length;
 
         require(people[msg.sender].age == 0, "Este usuario ja esta cadastrado.");
-        require(length == 11, "O CPF inserido nao possui 11 caracteres. Por favor, verifique e insira novamente.");
+        require(cpf_length == 11, "O CPF inserido nao possui 11 caracteres. Por favor, verifique e insira novamente.");
         require(age >= 16, "Idade invalida. Por favor, insira uma idade valida (de 16 anos ou mais).");
+        require(age < 150, "Idade invalida.");
 
+        for (uint i = 0; i < addresses.length; i++) {
+            require(rg != people[addresses[i]].RG, "RG invalido");
+            require(cpf != people[addresses[i]].CPF, "CPF invalido");
+        }
+
+        people[msg.sender].RG = rg;
         people[msg.sender].CPF = cpf;
         people[msg.sender].age = age;
+        addresses.push(msg.sender);
 
         return msg.sender;
     }
@@ -69,6 +79,7 @@ contract Election {
     // PP     | 4 
     function Voting(parties_enum option) public returns (uint256) {
 
+        require(people[msg.sender].CPF != 0, "Eleitor nao cadastrado");
         require(people[msg.sender].voted == false, "Voce ja votou.");
         string memory party;
 
