@@ -13,14 +13,14 @@ contract Election {
     address[] addresses;
     mapping(address => person) public people;
     mapping(string => uint256) public parties;
-    enum parties_enum { PRONA, PL, UNIAO, PT, PP }
+    enum parties_enum { PRONA, ARENA, PL, UNIAO, PT }
 
     constructor() {
         parties["PRONA"] = 0;
+        parties["ARENA"] = 0;
         parties["PL"] = 0;
         parties["UNIAO"] = 0;
         parties["PT"] = 0;
-        parties["PP"] = 0;
     }
 
     function uint256ToString(uint256 value) internal pure returns (string memory) {
@@ -70,13 +70,15 @@ contract Election {
         return msg.sender;
     }
 
-    // option | num
-    //---------------------
-    // PRONA  | 0
-    // PL     | 1 
-    // UNIAO  | 2
-    // PT     | 3
-    // PP     | 4 
+    //  _______________________
+    //  | option | num        |
+    //  |---------------------|
+    //  | PRONA  | 0          |
+    //  | ARENA  | 1          |
+    //  | PL     | 2          |
+    //  | UNIAO  | 3          |
+    //  | PT     | 4          |
+    //  |________|____________|
     function Voting(parties_enum option) public returns (uint256) {
 
         require(people[msg.sender].CPF != 0, "Eleitor nao cadastrado");
@@ -85,14 +87,14 @@ contract Election {
 
         if (option == parties_enum.PRONA) {
             party = "PRONA";
+        } else if (option == parties_enum.ARENA) {
+            party = "ARENA";
         } else if (option == parties_enum.PL) {
             party = "PL";
         } else if (option == parties_enum.UNIAO) {
             party = "UNIAO";
         } else if (option == parties_enum.PT) {
             party = "PT";
-        } else if (option == parties_enum.PP) {
-            party = "PP";
         }
 
         parties[party] = parties[party] + 1;
