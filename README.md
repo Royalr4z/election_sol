@@ -42,3 +42,6 @@
    - Função responsável por exibir as informações do eleitor e se ele já votou
      * @param {address} people - Endereço do eleitor.
      * @returns {person} - Retorna as informações pessoais desse eleitor.
+# Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues relatando problemas, sugestões ou novos recursos que gostaria de ver. Se deseja contribuir com código, por favor, envie um pull request.
