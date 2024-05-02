@@ -47,7 +47,7 @@ contract Election {
         return string(buffer);
     }
 
-    function create_person(uint256 rg, uint256 cpf, uint256 age) public returns (address) {
+    function create_person(uint256 rg, uint256 cpf, uint256 age) public {
 
         string memory numberString = uint256ToString(cpf);
         uint256 cpf_length = bytes(numberString).length;
@@ -67,7 +67,6 @@ contract Election {
         people[msg.sender].age = age;
         addresses.push(msg.sender);
 
-        return msg.sender;
     }
 
     //  _______________________
@@ -79,7 +78,7 @@ contract Election {
     //  | UNIAO  | 3          |
     //  | PT     | 4          |
     //  |________|____________|
-    function Voting(parties_enum option) public returns (uint256) {
+    function Voting(parties_enum option) public {
 
         require(people[msg.sender].CPF != 0, "Eleitor nao cadastrado");
         require(people[msg.sender].voted == false, "Voce ja votou.");
@@ -100,6 +99,5 @@ contract Election {
         parties[party] = parties[party] + 1;
         people[msg.sender].voted = true;
 
-        return parties[party];
     }
 }
