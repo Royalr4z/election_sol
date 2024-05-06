@@ -23,8 +23,8 @@
 
 1. create_person
    - Função responsável por cadastra o eleitor
-<br/>&nbsp;     ├──  @param {uint256} RG - RG do eleitor.
-<br/>&nbsp;     ├──  @param {uint256} CPF - CPF do eleitor.
+<br/>&nbsp;     ├──  @param {string} RG - RG do eleitor.
+<br/>&nbsp;     ├──  @param {string} CPF - CPF do eleitor.
 <br/>&nbsp;     ├──  @param {uint256} age - Idade do eleitor.
 <br/>&nbsp;     └──  @returns {void}
 
