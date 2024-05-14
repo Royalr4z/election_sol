@@ -15,12 +15,28 @@ contract Election {
     mapping(string => uint256) public parties;
     enum parties_enum { PRONA, ARENA, PL, UNIAO, PT }
 
+    struct view_election {
+        uint PRONA;
+        uint ARENA;
+        uint PL;
+        uint UNIAO;
+        uint PT;
+    }
+
+    view_election public Viewing_Voting;
+
     constructor() {
         parties["PRONA"] = 0;
         parties["ARENA"] = 0;
         parties["PL"] = 0;
         parties["UNIAO"] = 0;
         parties["PT"] = 0;
+
+        Viewing_Voting.PRONA = parties["PRONA"];
+        Viewing_Voting.ARENA = parties["ARENA"];
+        Viewing_Voting.PL = parties["PL"];
+        Viewing_Voting.UNIAO = parties["UNIAO"];
+        Viewing_Voting.PT = parties["PT"];
     }
 
     function changingStringToCPF(string memory value) internal pure returns (string memory) {
@@ -124,18 +140,29 @@ contract Election {
 
         if (option == parties_enum.PRONA) {
             party = "PRONA";
+            Viewing_Voting.PRONA = Viewing_Voting.PRONA + 1;
+
         } else if (option == parties_enum.ARENA) {
             party = "ARENA";
+            Viewing_Voting.ARENA = Viewing_Voting.ARENA + 1;
+
         } else if (option == parties_enum.PL) {
             party = "PL";
+            Viewing_Voting.PL = Viewing_Voting.PL + 1;
+
         } else if (option == parties_enum.UNIAO) {
             party = "UNIAO";
+            Viewing_Voting.UNIAO = Viewing_Voting.UNIAO + 1;
+
         } else if (option == parties_enum.PT) {
             party = "PT";
+            Viewing_Voting.PT = Viewing_Voting.PT + 1;
+
         }
 
         parties[party] = parties[party] + 1;
         people[msg.sender].voted = true;
 
     }
+
 }
