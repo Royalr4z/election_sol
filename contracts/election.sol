@@ -39,6 +39,13 @@ contract Election {
         Viewing_Voting.PT = parties["PT"];
     }
 
+
+    /*
+    * Esta função retorna o CPF informado pelo usuário no formato (xxx.xxx.xxx-xx).
+    * 
+    * @param {string} value - CPF informado pelo usuário.
+    * @returns {string} - Retorna o CPF no Formato Correto.
+    */
     function changingStringToCPF(string memory value) internal pure returns (string memory) {
     
         bytes memory str = new bytes(14);
@@ -65,6 +72,13 @@ contract Election {
         return string(str);
     }
 
+
+    /*
+    * Esta função retorna o RG informado pelo usuário sem letras ou caracteres especiais.
+    * 
+    * @param {string} value - RG informado pelo usuário.
+    * @returns {string} - Retorna o RG no Formato Correto.
+    */
     function changingStringToRG(string memory value) internal pure returns (string memory) {
     
         bytes memory str = new bytes(10);
@@ -80,6 +94,13 @@ contract Election {
         return string(str);
     }
 
+
+    /*
+    * Esta função retorna o tamanho da string sem letras ou caracteres especiais.
+    * 
+    * @param {string} value - string que o usuário deseja saber o tamanho.
+    * @returns {uint256} - Retorna o tamanho.
+    */
     function lengthString(string memory value) internal pure returns (uint256) {
     
         uint size = 0;
@@ -93,10 +114,21 @@ contract Election {
         return size;
     }
 
+
+    // @returns {bool} - Retorna true se forem diferentes e false se forem iguais.
     function CompareString(string memory a, string memory b) internal pure  returns (bool) {
         return keccak256(abi.encodePacked(a)) != keccak256(abi.encodePacked(b));
     }
 
+
+    /*
+    * Esta função faz a validação e registra na blockchain as informações do eleitor.
+    * 
+    * @param {string} rg - RG do eleitor.
+    * @param {string} cpf - CPF do eleitor.
+    * @param {string} age - Idade do eleitor.
+    * @returns {void}
+    */
     function create_person(string memory rg, string memory cpf, uint256 age) public {
 
         uint256 rg_length = lengthString(rg);
@@ -123,6 +155,8 @@ contract Election {
 
     }
 
+
+    //       parties_enum
     //  _______________________
     //  | option | num        |
     //  |---------------------|
@@ -132,6 +166,14 @@ contract Election {
     //  | UNIAO  | 3          |
     //  | PT     | 4          |
     //  |________|____________|
+
+
+    /*
+    * Esta função registra na Blockchain o voto do eleitor.
+    * 
+    * @param {parties_enum} option - Voto do eleitor.
+    * @returns {void}
+    */
     function Voting(parties_enum option) public {
 
         require(CompareString(people[msg.sender].CPF, "") , "Eleitor nao cadastrado");
