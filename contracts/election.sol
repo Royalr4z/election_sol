@@ -126,7 +126,7 @@ contract Election {
     * 
     * @param {string} rg - RG do eleitor.
     * @param {string} cpf - CPF do eleitor.
-    * @param {string} age - Idade do eleitor.
+    * @param {uint256} age - Idade do eleitor.
     * @returns {void}
     */
     function create_person(string memory rg, string memory cpf, uint256 age) public {

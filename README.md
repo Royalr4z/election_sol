@@ -34,11 +34,15 @@
 <br/>&nbsp;     └── @returns {void}
 
 3. parties
-   - Função responsável por exibir o número de votos de um determinado partido
+   - Função responsável por exibir o número de votos recebidos de um determinado partido
 <br/>&nbsp;     ├── @param {string} parties - Nome do Partido.
 <br/>&nbsp;     └── @returns {uint256} - Retorna o número de Votos que esse partido recebeu.
 
-4. people
+4. Viewing_Voting
+   - Função responsável por exibir o número de votos recebidos de todos os partidos
+<br/>&nbsp;     └── @returns {view_election} - Retorna uma Lista com todos os partidos e o número de votos recebidos.
+
+5. people
    - Função responsável por exibir as informações do eleitor e se ele já votou
 <br/>&nbsp;     ├── @param {address} people - Endereço do eleitor.
 <br/>&nbsp;     └── @returns {person} - Retorna as informações pessoais desse eleitor.
