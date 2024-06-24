@@ -1,2 +1,41 @@
 .states
 contracts/artifacts
+
+# Hyperledger Besu 
+Node-*/data/caches
+Node-*/data/database
+Node-*/data/DATABASE_METADATA.json
+Node-*/data/VERSION_METADATA.json
+
+# Hardhat files
+smart-contract/cache
+smart-contract/artifacts
+
+# TypeChain files
+smart-contract/typechain
+smart-contract/typechain-types
+
+# solidity-coverage files
+smart-contract/coverage
+smart-contract/coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node
+smart-contract/ignition/deployments/chain-31337
+
+smart-contract/node_modules
+smart-contract/.env
+
+# Hardhat files
+smart-contract/cache
+smart-contract/artifacts
+
+# TypeChain files
+smart-contract/typechain
+smart-contract/typechain-types
+
+# solidity-coverage files
+smart-contract/coverage
+smart-contract/coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node
+smart-contract/ignition/deployments/chain-31337

@@ -1,11 +1,45 @@
-<h1>election_sol</h1>
+# Election_sol
 
 ## Tecnologias Utilizadas
 
-- **Linguagem:** Solidity
-- **Ethereum IDE:** Remix
+- **Framework Blockchain:** Hyperledger Besu
+- **Linguagem de Contratos Inteligentes:** Solidity
+- **Ferramenta de Deploy:** Hardhat
+- **IDE Ethereum:** Remix
 
-## Partidos:
+## Configuração do Hyperledger Besu para Rede Privada (QBFT)
+
+Aqui estão os passos para configurar e iniciar uma rede privada usando Hyperledger Besu com múltiplos nós:
+
+### Iniciando Node-1
+
+```bash
+cd Node-1
+besu --data-path=data --genesis-file=../genesis.json --rpc-http-enabled --rpc-http-api=ETH,NET,QBFT --host-allowlist="*" --rpc-http-cors-origins="all"
+```
+
+### Iniciando Node-2
+
+```bash
+cd Node-2
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=<Node-1 Enode URL> --p2p-port=30304 --rpc-http-enabled --rpc-http-api=ETH,NET,QBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8546
+```
+### Iniciando Node-3
+
+```bash
+cd Node-3
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=<Node-1 Enode URL> --p2p-port=30305 --rpc-http-enabled --rpc-http-api=ETH,NET,QBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8547
+```
+
+### Iniciando Node-4
+
+```bash
+cd Node-4
+besu --data-path=data --genesis-file=../genesis.json --bootnodes=<Node-1 Enode URL> --p2p-port=30306 --rpc-http-enabled --rpc-http-api=ETH,NET,QBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8548
+```
+
+## Smart Contract 
+### Partidos:
   ```
   _______________________
   | option | num        |
@@ -18,7 +52,7 @@
   |________|____________|
   ```
 
-## Executando o Smart Contract 
+### Funções do Smart Contract 
 - <h3>Métodos:</h3>
 
 1. create_person
