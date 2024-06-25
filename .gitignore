@@ -22,6 +22,7 @@ smart-contract/coverage.json
 # Hardhat Ignition default folder for deployments against a local node
 smart-contract/ignition/deployments/chain-31337
 
+smart-contract/package-lock.json
 smart-contract/node_modules
 smart-contract/.env
 
