@@ -24,6 +24,7 @@ contract Election {
     }
 
     view_election public Viewing_Voting;
+    event Voted(address indexed voter, string parties);
 
     constructor() {
         parties["PRONA"] = 0;
@@ -204,6 +205,8 @@ contract Election {
 
         parties[party] = parties[party] + 1;
         people[msg.sender].voted = true;
+
+        emit Voted(msg.sender, party);
 
     }
 
