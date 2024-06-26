@@ -40,6 +40,13 @@ contract Election {
         Viewing_Voting.PT = parties["PT"];
     }
 
+    function get_voting() public view returns (view_election memory) {
+        return Viewing_Voting;
+    }
+
+    function get_party_votes(string memory party) public view returns (uint256) {
+        return parties[party];
+    }
 
     /*
     * Esta função retorna o CPF informado pelo usuário no formato (xxx.xxx.xxx-xx).

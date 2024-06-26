@@ -1,7 +1,7 @@
 
 async function main() {
   
-    const contractAddress = "0x < Endereço do Contrato >"; 
+    const contractAddress = "0xa2b80D63b1f72a4D26dfc33D62EbE80148Ddd326"; 
     const MyContract = await ethers.getContractFactory("Election");
     const myContract = MyContract.attach(contractAddress);
 
@@ -32,6 +32,15 @@ async function main() {
 
     const voting = await myContract.Voting(parseInt(vote));
     await voting.wait();
+
+    const view_voting = await myContract.get_voting();
+    const view_voting_list = view_voting.toString().split(',');
+    console.log("Votos dos partidos: ");
+    console.log(` - PRONA: ${view_voting_list[0]}`);
+    console.log(` - ARENA: ${view_voting_list[1]}`);
+    console.log(` - PL:    ${view_voting_list[2]}`);
+    console.log(` - UNIAO: ${view_voting_list[3]}`);
+    console.log(` - PT:    ${view_voting_list[4]}`);
 
   }
   
