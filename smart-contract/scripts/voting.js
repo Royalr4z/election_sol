@@ -1,7 +1,7 @@
 
 async function main() {
   
-    const contractAddress = "0xa2b80D63b1f72a4D26dfc33D62EbE80148Ddd326"; 
+    const contractAddress = "0x <Endereço-do-Contrato>"; 
     const MyContract = await ethers.getContractFactory("Election");
     const myContract = MyContract.attach(contractAddress);
 
