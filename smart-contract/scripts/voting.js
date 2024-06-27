@@ -35,6 +35,7 @@ async function main() {
 
     const view_voting = await myContract.get_voting();
     const view_voting_list = view_voting.toString().split(',');
+    console.clear();
     console.log("Votos dos partidos: ");
     console.log(` - PRONA: ${view_voting_list[0]}`);
     console.log(` - ARENA: ${view_voting_list[1]}`);

@@ -38,7 +38,35 @@ cd Node-4
 besu --data-path=data --genesis-file=../genesis.json --bootnodes=<Node-1 Enode URL> --p2p-port=30306 --rpc-http-enabled --rpc-http-api=ETH,NET,QBFT --host-allowlist="*" --rpc-http-cors-origins="all" --rpc-http-port=8548
 ```
 
-## Smart Contract 
+## Interagindo com o Smart Contract - Hardhat
+
+Esta seção descreve como interagir com o seu Smart Contract usando Hardhat e a rede Besu.
+
+### Fazendo o deploy do smart contract
+
+Instruções para fazer o deploy do seu Smart Contract na rede Besu usando Hardhat.
+
+```bash
+npx hardhat run scripts/deploy.js --network besu
+```
+
+### Fazendo o cadastro do usuário
+
+Necessário Informar o RG, CPF e idade para realizar a votação.
+
+```bash
+npx hardhat run scripts/signup.js --network besu
+```
+
+### Realizando a votação
+
+Escolha o partido no qual deseja votar.
+
+```bash
+npx hardhat run scripts/voting.js --network besu
+```
+
+## Smart Contract - Solidity
 ### Partidos:
   ```
   _______________________
